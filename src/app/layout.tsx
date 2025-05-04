@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster"; // Import Toaster
 import { ThemeToggle } from '@/components/theme-toggle'; // Import ThemeToggle
 import { LanguageProvider } from '@/contexts/language-context'; // Import LanguageProvider
 import { LanguageSwitcher } from '@/components/language-switcher'; // Import LanguageSwitcher
+import { TooltipProvider } from '@/components/ui/tooltip'; // Import TooltipProvider
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,32 +33,34 @@ export default function RootLayout({
         )}
       >
         <LanguageProvider> {/* Wrap content with LanguageProvider */}
-          <div className="relative flex min-h-dvh flex-col"> {/* Use dvh for better mobile viewport height */}
-            {/* Add a blurred background element - slightly more subtle */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-muted to-background opacity-40 blur-3xl pointer-events-none"></div>
+          <TooltipProvider> {/* Wrap with TooltipProvider */}
+            <div className="relative flex min-h-dvh flex-col"> {/* Use dvh for better mobile viewport height */}
+              {/* Add a blurred background element - slightly more subtle */}
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-muted to-background opacity-40 blur-3xl pointer-events-none"></div>
 
-            {/* Updated Header for Theme Toggle and Language Switcher */}
-            <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-              <div className="container flex h-16 items-center justify-end space-x-4 px-4 sm:px-6 lg:px-8"> {/* Increased height and padding */}
-                <LanguageSwitcher /> {/* Add Language Switcher */}
-                <ThemeToggle />
-              </div>
-            </header>
+              {/* Updated Header for Theme Toggle and Language Switcher */}
+              <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
+                <div className="container flex h-16 items-center justify-end space-x-4 px-4 sm:px-6 lg:px-8"> {/* Increased height and padding */}
+                  <LanguageSwitcher /> {/* Add Language Switcher */}
+                  <ThemeToggle />
+                </div>
+              </header>
 
-            <main className="flex-1 container mx-auto px-4 py-10 md:py-16"> {/* Adjusted padding */}
-              {children}
-            </main>
+              <main className="flex-1 container mx-auto px-4 py-10 md:py-16"> {/* Adjusted padding */}
+                {children}
+              </main>
 
-            {/* Simple Footer */}
-            <footer className="py-6 md:px-8 md:py-8 border-t border-border/40">
-              <div className="container flex flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between">
-                <p className="text-sm text-muted-foreground text-center">
-                  © {new Date().getFullYear()} Pyetro (Nyx). All rights reserved.
-                </p>
-                {/* Optional: Add social links or other footer content here */}
-              </div>
-            </footer>
-          </div>
+              {/* Simple Footer */}
+              <footer className="py-6 md:px-8 md:py-8 border-t border-border/40">
+                <div className="container flex flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between">
+                  <p className="text-sm text-muted-foreground text-center">
+                    © {new Date().getFullYear()} Pyetro (Nyx). All rights reserved.
+                  </p>
+                  {/* Optional: Add social links or other footer content here */}
+                </div>
+              </footer>
+            </div>
+          </TooltipProvider>
           <Toaster /> {/* Add Toaster for notifications */}
         </LanguageProvider>
       </body>
