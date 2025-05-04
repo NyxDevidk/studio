@@ -58,14 +58,14 @@ export function PersonalInfoSection() {
         </p>
         <div className="flex justify-center md:justify-start space-x-4"> {/* Increased spacing */}
           <Button variant="outline" size="icon" asChild className="hover-scale">
-            {/* TODO: Update GitHub link */}
-            <Link href="https://github.com/NyxTheDeveloper" target="_blank" aria-label={texts.githubAriaLabel} rel="noopener noreferrer">
+            {/* Updated GitHub link */}
+            <Link href="https://github.com/NyxDevidk" target="_blank" aria-label={texts.githubAriaLabel} rel="noopener noreferrer">
               <Github />
             </Link>
           </Button>
           <Button variant="outline" size="icon" asChild className="hover-scale">
-            {/* TODO: Update Discord link (e.g., invite link or profile ID) */}
-            <Link href="https://discord.gg/invite/K8Gz5VbHTA" target="_blank" aria-label={texts.discordAriaLabel} rel="noopener noreferrer">
+            {/* Updated Discord link */}
+            <Link href="https://discord.gg/kHVRF49cy3" target="_blank" aria-label={texts.discordAriaLabel} rel="noopener noreferrer">
               <DiscordIcon className="h-5 w-5"/>
             </Link>
           </Button>
