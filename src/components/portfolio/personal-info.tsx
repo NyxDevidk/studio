@@ -23,15 +23,15 @@ const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const content = {
   en: {
     name: "Pyetro (Nyx)",
-    bio: "I've been a developer for 3 years and I like programming apps for my own use. I love Roblox and Minecraft and I'm 14 years old.",
-    githubAriaLabel: "GitHub",
-    discordAriaLabel: "Discord",
+    bio: "I'm a developer with 3 years of experience, passionate about building applications for personal use. Big fan of Roblox and Minecraft, and I'm 14 years old.", // Refined bio
+    githubAriaLabel: "GitHub Profile",
+    discordAriaLabel: "Discord Server/Profile",
   },
   pt: {
     name: "Pyetro (Nyx)",
-    bio: "Sou desenvolvedor há 3 anos e gosto de programar apps para uso próprio. Amo Roblox e Minecraft e tenho 14 anos.", // Updated description
-    githubAriaLabel: "GitHub",
-    discordAriaLabel: "Discord",
+    bio: "Sou um desenvolvedor com 3 anos de experiência, apaixonado por criar aplicativos para uso pessoal. Grande fã de Roblox e Minecraft, e tenho 14 anos.", // Refined bio PT
+    githubAriaLabel: "Perfil do GitHub",
+    discordAriaLabel: "Servidor/Perfil do Discord",
   }
 };
 
@@ -40,32 +40,32 @@ export function PersonalInfoSection() {
   const texts = content[language] || content.en; // Fallback to English
 
   return (
-    <section id="about" className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-      <Avatar className="w-24 h-24 md:w-32 md:h-32 border-4 border-primary shadow-lg">
+    <section id="about" className="flex flex-col md:flex-row items-center text-center md:text-left gap-10 md:gap-14"> {/* Increased gap */}
+      <Avatar className="w-28 h-28 md:w-36 md:h-36 border-4 border-primary shadow-lg flex-shrink-0"> {/* Slightly larger avatar */}
         <AvatarImage
           src="https://i.imgur.com/TecgRw1.gif"
           alt="Nyx (Pyetro) - User Avatar"
-          data-ai-hint="user avatar profile picture"
+          data-ai-hint="user avatar profile picture animated gif"
          />
         <AvatarFallback>PN</AvatarFallback>
       </Avatar>
-      <div className="text-center md:text-left">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+      <div>
+        <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-3"> {/* Larger heading */}
           {texts.name}
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-xl">
+        <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto md:mx-0"> {/* Increased margin, max-width */}
           {texts.bio}
         </p>
-        <div className="flex justify-center md:justify-start space-x-3">
-          <Button variant="outline" size="icon" asChild>
+        <div className="flex justify-center md:justify-start space-x-4"> {/* Increased spacing */}
+          <Button variant="outline" size="icon" asChild className="hover-scale">
             {/* TODO: Update GitHub link */}
-            <Link href="https://github.com/yourusername" target="_blank" aria-label={texts.githubAriaLabel}>
+            <Link href="https://github.com/NyxTheDeveloper" target="_blank" aria-label={texts.githubAriaLabel} rel="noopener noreferrer">
               <Github />
             </Link>
           </Button>
-          <Button variant="outline" size="icon" asChild>
+          <Button variant="outline" size="icon" asChild className="hover-scale">
             {/* TODO: Update Discord link (e.g., invite link or profile ID) */}
-            <Link href="https://discord.gg/yourinvite" target="_blank" aria-label={texts.discordAriaLabel}>
+            <Link href="https://discord.gg/invite/K8Gz5VbHTA" target="_blank" aria-label={texts.discordAriaLabel} rel="noopener noreferrer">
               <DiscordIcon className="h-5 w-5"/>
             </Link>
           </Button>

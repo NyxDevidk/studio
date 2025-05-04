@@ -53,16 +53,17 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-  			sidebar: {
-  				DEFAULT: 'hsl(var(--sidebar-background))',
-  				foreground: 'hsl(var(--sidebar-foreground))',
-  				primary: 'hsl(var(--sidebar-primary))',
-  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  				accent: 'hsl(var(--sidebar-accent))',
-  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-  				border: 'hsl(var(--sidebar-border))',
-  				ring: 'hsl(var(--sidebar-ring))'
-  			}
+        // Add sidebar colors matching globals.css
+        sidebar: {
+          DEFAULT: 'hsl(var(--sidebar-background))',
+          foreground: 'hsl(var(--sidebar-foreground))',
+          primary: 'hsl(var(--sidebar-primary))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+          accent: 'hsl(var(--sidebar-accent))',
+          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+          border: 'hsl(var(--sidebar-border))',
+          ring: 'hsl(var(--sidebar-ring))'
+        }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -86,24 +87,18 @@ export default {
   					height: '0'
   				}
   			},
-        'fade-in': { // Add fade-in keyframe
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
+        'fade-in': { // Keep existing fade-in
+          '0%': { opacity: '0', transform: 'translateY(12px)' }, // Adjusted transform
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-in': 'fade-in 0.5s ease-out forwards', // Add fade-in animation
+        'fade-in': 'fade-in 0.6s ease-out forwards', // Adjusted duration
   		},
-      // Add blur utility if needed explicitly, though backdrop-blur exists
-      // backdropBlur: {
-      //   'xs': '2px',
-      //   'sm': '4px',
-      //    ...
-      // }
+      // backdropBlur is part of core Tailwind, no need to extend unless customizing values
   	}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-

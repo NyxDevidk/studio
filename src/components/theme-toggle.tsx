@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button'; // Use Button for better accessibility and styling
 import useTheme from '@/hooks/use-theme';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"; // Import Tooltip
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -16,26 +20,33 @@ export function ThemeToggle() {
   }, []);
 
   if (!mounted) {
-    // Render nothing or a placeholder on the server and initial client render
-    return null;
+    // Render a placeholder button matching the final size to prevent layout shift
+    return <Button variant="ghost" size="icon" className="h-9 w-9" disabled />;
   }
 
   const isDarkMode = theme === 'dark';
+  const Icon = isDarkMode ? Sun : Moon;
+  const tooltipText = `Switch to ${isDarkMode ? 'light' : 'dark'} mode`;
 
   return (
-    <div className="flex items-center space-x-2">
-      <Sun className={`h-5 w-5 transition-opacity ${isDarkMode ? 'opacity-50' : 'opacity-100'}`} />
-      <Switch
-        id="theme-toggle-switch"
-        checked={isDarkMode}
-        onCheckedChange={toggleTheme}
-        aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
-      />
-      <Moon className={`h-5 w-5 transition-opacity ${isDarkMode ? 'opacity-100' : 'opacity-50'}`} />
-      {/* Hidden label for accessibility */}
-      <Label htmlFor="theme-toggle-switch" className="sr-only">
-        Toggle theme
-      </Label>
-    </div>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          variant="ghost" // Use ghost variant for a subtle look
+          size="icon" // Standard icon button size
+          onClick={toggleTheme}
+          aria-label={tooltipText}
+          className="h-9 w-9 rounded-full" // Ensure it's round
+        >
+          <Icon className="h-[1.2rem] w-[1.2rem] transition-transform duration-300 ease-in-out rotate-0 scale-100 hover:rotate-12 dark:-rotate-90 dark:scale-0" />
+          <span className="sr-only">{tooltipText}</span> {/* Keep for screen readers */}
+           {/* Second icon for smooth transition */}
+          <Icon className="absolute h-[1.2rem] w-[1.2rem] transition-transform duration-300 ease-in-out rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{tooltipText}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
