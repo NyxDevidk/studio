@@ -1,9 +1,10 @@
-'use client'; // Added 'use client' as this component uses hooks (implicitly via Avatar) and event handlers (Links)
+'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react"; // Mail and Linkedin removed
+import { Github } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from '@/contexts/language-context'; // Import useLanguage
 
 // Inline SVG for Discord icon
 const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -18,38 +19,53 @@ const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
+// Text content for different languages
+const content = {
+  en: {
+    name: "Pyetro (Nyx)",
+    bio: "Developer passionate about creating modern web applications. I enjoy sites where I can toggle between light and dark themes.",
+    githubAriaLabel: "GitHub",
+    discordAriaLabel: "Discord",
+  },
+  pt: {
+    name: "Pyetro (Nyx)",
+    bio: "Desenvolvedor apaixonado por criar aplicações web modernas. Gosto de sites onde posso alternar entre temas claro e escuro.",
+    githubAriaLabel: "GitHub",
+    discordAriaLabel: "Discord",
+  }
+};
 
 export function PersonalInfoSection() {
+  const { language } = useLanguage(); // Get the current language
+  const texts = content[language] || content.en; // Fallback to English
+
   return (
     <section id="about" className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
       <Avatar className="w-24 h-24 md:w-32 md:h-32 border-4 border-primary shadow-lg">
-        {/* Developer Note: Using user-provided GIF link. */}
         <AvatarImage
-          src="https://i.imgur.com/TecgRw1.gif" // Updated GIF URL
+          src="https://i.imgur.com/TecgRw1.gif"
           alt="Nyx (Pyetro) - User Avatar"
-          data-ai-hint="user avatar profile picture" // Hint for finding a replacement
+          data-ai-hint="user avatar profile picture"
          />
-        <AvatarFallback>PN</AvatarFallback> {/* Updated Fallback */}
+        <AvatarFallback>PN</AvatarFallback>
       </Avatar>
       <div className="text-center md:text-left">
         <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-          Pyetro (Nyx) {/* Updated Name */}
+          {texts.name}
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-xl">
-          Developer passionate about creating modern web applications. I enjoy sites where I can toggle between light and dark themes. {/* Updated Bio */}
+          {texts.bio}
         </p>
         <div className="flex justify-center md:justify-start space-x-3">
-          {/* Email button removed */}
-          {/* LinkedIn button removed */}
           <Button variant="outline" size="icon" asChild>
             {/* TODO: Update GitHub link */}
-            <Link href="https://github.com/yourusername" target="_blank" aria-label="GitHub">
+            <Link href="https://github.com/yourusername" target="_blank" aria-label={texts.githubAriaLabel}>
               <Github />
             </Link>
           </Button>
           <Button variant="outline" size="icon" asChild>
             {/* TODO: Update Discord link (e.g., invite link or profile ID) */}
-            <Link href="https://discord.gg/yourinvite" target="_blank" aria-label="Discord">
+            <Link href="https://discord.gg/yourinvite" target="_blank" aria-label={texts.discordAriaLabel}>
               <DiscordIcon className="h-5 w-5"/>
             </Link>
           </Button>

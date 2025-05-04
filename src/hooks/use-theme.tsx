@@ -8,31 +8,31 @@ type Theme = 'light' | 'dark';
 const THEME_STORAGE_KEY = 'theme';
 
 function useTheme() {
-  const [theme, setThemeState] = useState<Theme>('light'); // Default to light initially
-
-  // Effect to read initial theme from localStorage and system preference on mount (client-side only)
-  useEffect(() => {
-    let initialTheme: Theme = 'light'; // Default theme
-    try {
-        const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-        if (storedTheme === 'dark' || storedTheme === 'light') {
-            initialTheme = storedTheme;
-        } else {
-            // Fallback to system preference if no stored theme
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            initialTheme = prefersDark ? 'dark' : 'light';
-        }
-    } catch (error) {
-        console.warn('Could not access localStorage for theme:', error);
-        // Fallback to system preference if localStorage fails
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        initialTheme = prefersDark ? 'dark' : 'light';
+  // Initialize state based on client-side checks only
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === 'undefined') {
+      return 'light'; // Default for SSR
     }
-    setThemeState(initialTheme); // Set the theme state after checking storage/system
-  }, []);
+    try {
+      const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+      if (storedTheme === 'dark' || storedTheme === 'light') {
+        return storedTheme;
+      }
+      // Fallback to system preference if no stored theme
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return prefersDark ? 'dark' : 'light';
+    } catch (error) {
+      console.warn('Could not access localStorage or matchMedia for theme:', error);
+      return 'light'; // Fallback theme
+    }
+  });
 
-  // Effect to apply theme class to HTML element and save to localStorage
+  // Effect to apply theme class to HTML element and save to localStorage (client-side only)
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return; // Don't run on server
+    }
+
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
