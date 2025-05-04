@@ -23,13 +23,13 @@ const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const content = {
   en: {
     name: "Pyetro (Nyx)",
-    bio: "Developer passionate about creating modern web applications. I enjoy sites where I can toggle between light and dark themes.",
+    bio: "I've been a developer for 3 years and I like programming apps for my own use. I love Roblox and Minecraft and I'm 14 years old.",
     githubAriaLabel: "GitHub",
     discordAriaLabel: "Discord",
   },
   pt: {
     name: "Pyetro (Nyx)",
-    bio: "Desenvolvedor apaixonado por criar aplicações web modernas. Gosto de sites onde posso alternar entre temas claro e escuro.",
+    bio: "Sou Dev a 3 anos e gosto de Programar apps para uso propio, Amo Roblox e Minecraft e tenho 14 Anos.",
     githubAriaLabel: "GitHub",
     discordAriaLabel: "Discord",
   }
