@@ -1,10 +1,11 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from '@/contexts/language-context'; // Import useLanguage
+import { buttonVariants } from "@/components/ui/button"; // Import buttonVariants
+import { cn } from "@/lib/utils"; // Import cn
 
 // Inline SVG for Discord icon
 const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -40,8 +41,8 @@ export function PersonalInfoSection() {
   const texts = content[language] || content.en; // Fallback to English
 
   return (
-    <section id="about" className="flex flex-col md:flex-row items-center text-center md:text-left gap-10 md:gap-14"> {/* Increased gap */}
-      <Avatar className="w-28 h-28 md:w-36 md:h-36 border-4 border-primary shadow-lg flex-shrink-0"> {/* Slightly larger avatar */}
+    <section id="about" className="flex flex-col md:flex-row items-center text-center md:text-left gap-12 md:gap-16"> {/* Increased gap further */}
+      <Avatar className="w-32 h-32 md:w-40 md:h-40 border-[6px] border-primary/80 shadow-xl flex-shrink-0 transition-transform duration-300 hover:scale-105"> {/* Even larger avatar, thicker border, hover effect */}
         <AvatarImage
           src="https://i.imgur.com/TecgRw1.gif"
           alt="Nyx (Pyetro) - User Avatar"
@@ -49,26 +50,40 @@ export function PersonalInfoSection() {
          />
         <AvatarFallback>PN</AvatarFallback>
       </Avatar>
-      <div>
-        <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-3"> {/* Larger heading */}
+      <div className="space-y-5"> {/* Added space-y for better vertical rhythm */}
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-2 tracking-tight"> {/* Larger heading, tighter tracking */}
           {texts.name}
         </h1>
-        <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-2xl mx-auto md:mx-0"> {/* Increased margin, max-width */}
+        <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto md:mx-0 leading-relaxed"> {/* Larger text, increased margin, max-width, relaxed leading */}
           {texts.bio}
         </p>
-        <div className="flex justify-center md:justify-start space-x-4"> {/* Increased spacing */}
-          <Button variant="outline" size="icon" asChild className="hover-scale">
-            {/* Updated GitHub link */}
-            <Link href="https://github.com/NyxDevidk" target="_blank" aria-label={texts.githubAriaLabel} rel="noopener noreferrer">
-              <Github />
-            </Link>
-          </Button>
-          <Button variant="outline" size="icon" asChild className="hover-scale">
-            {/* Updated Discord link */}
-            <Link href="https://discord.gg/kHVRF49cy3" target="_blank" aria-label={texts.discordAriaLabel} rel="noopener noreferrer">
-              <DiscordIcon className="h-5 w-5"/>
-            </Link>
-          </Button>
+        <div className="flex justify-center md:justify-start space-x-5"> {/* Increased spacing */}
+          {/* Apply button styles directly to Link */}
+          <Link
+            href="https://github.com/NyxDevidk"
+            target="_blank"
+            aria-label={texts.githubAriaLabel}
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "icon" }),
+              "hover-scale group rounded-full h-12 w-12" // Keep custom styles like rounded-full, h-12, w-12
+            )}
+          >
+            <Github className="h-6 w-6 text-muted-foreground group-hover:text-foreground transition-colors" />
+          </Link>
+          {/* Apply button styles directly to Link */}
+          <Link
+            href="https://discord.gg/kHVRF49cy3"
+            target="_blank"
+            aria-label={texts.discordAriaLabel}
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "icon" }),
+              "hover-scale group rounded-full h-12 w-12" // Keep custom styles
+            )}
+          >
+            <DiscordIcon className="h-6 w-6 text-muted-foreground group-hover:text-foreground transition-colors"/>
+          </Link>
         </div>
       </div>
     </section>

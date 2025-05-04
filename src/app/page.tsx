@@ -4,10 +4,10 @@ import { Separator } from '@/components/ui/separator';
 
 export default function Home() {
   return (
-    <div className="space-y-20 md:space-y-28 animate-fade-in"> {/* Increased spacing */}
+    <div className="space-y-24 md:space-y-32 animate-fade-in"> {/* Increased spacing further */}
       <PersonalInfoSection />
-      <Separator className="my-16 md:my-20" /> {/* Adjusted separator margin */}
-      <SkillsSection /> {/* Keep the SkillsSection */}
+      <Separator className="my-20 md:my-24 opacity-50" /> {/* Adjusted separator margin and opacity */}
+      <SkillsSection />
       {/* ContactSection and its Separator removed */}
     </div>
   );

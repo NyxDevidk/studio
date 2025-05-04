@@ -1,4 +1,3 @@
-// src/components/portfolio/skills-section.tsx
 'use client'; // Add this directive
 
 import React from 'react';
@@ -44,20 +43,20 @@ export function SkillsSection() {
   const texts = content[language] || content.en; // Fallback to English
 
   return (
-    <section id="skills" className="max-w-3xl mx-auto"> {/* Slightly wider max-width */}
-      <Card className="shadow-lg bg-card/80 backdrop-blur-sm"> {/* Added slight transparency and blur */}
-        <CardHeader className="text-center pb-4"> {/* Reduced bottom padding */}
-          <CardTitle className="text-3xl md:text-4xl font-bold text-foreground mb-2">{texts.title}</CardTitle> {/* Larger title */}
+    <section id="skills" className="max-w-4xl mx-auto"> {/* Increased max-width */}
+      <Card className="shadow-xl bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl overflow-hidden"> {/* Enhanced shadow, border, rounded-xl */}
+        <CardHeader className="text-center pb-6 pt-8 bg-muted/40 border-b border-border/30"> {/* Increased padding, subtle bg, border */}
+          <CardTitle className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary tracking-tight">{texts.title}</CardTitle> {/* Larger title, primary color, tighter tracking */}
         </CardHeader>
-        <CardContent className="flex justify-center flex-wrap gap-4 p-6"> {/* Increased gap and padding */}
+        <CardContent className="flex justify-center flex-wrap gap-5 p-8 md:p-10"> {/* Increased gap and padding */}
           {skills.map((skill) => (
             <Badge
               key={skill.name}
               variant="secondary"
-              className="flex items-center gap-2 px-5 py-2.5 text-base md:text-lg rounded-full shadow-sm hover-scale" /* Rounded-full, adjusted padding, added shadow and hover effect */
+              className="flex items-center gap-2.5 px-6 py-3 text-md md:text-lg rounded-lg shadow-md hover-scale bg-secondary/80 border border-transparent hover:border-primary/50 transition-all duration-200 cursor-default" /* Rounded-lg, adjusted padding/gap, added shadow/hover effect, bg opacity, hover border */
             >
-              <skill.icon className="h-5 w-5 text-primary" aria-hidden="true" /> {/* Added text-primary to icon */}
-              {skill.name}
+              <skill.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" aria-hidden="true" /> {/* Slightly larger icon */}
+              <span className="font-medium">{skill.name}</span> {/* Added font-medium */}
             </Badge>
           ))}
         </CardContent>

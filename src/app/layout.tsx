@@ -29,6 +29,7 @@ export default function RootLayout({
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
+          'bg-transition', // Add smooth background transition class
           inter.variable
         )}
       >
@@ -36,7 +37,7 @@ export default function RootLayout({
           <TooltipProvider> {/* Wrap with TooltipProvider */}
             <div className="relative flex min-h-dvh flex-col"> {/* Use dvh for better mobile viewport height */}
               {/* Add a blurred background element - slightly more subtle */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-background via-muted to-background opacity-40 blur-3xl pointer-events-none"></div>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-muted/10 to-background opacity-30 blur-3xl pointer-events-none dark:from-primary/10 dark:via-muted/5"></div>
 
               {/* Updated Header for Theme Toggle and Language Switcher */}
               <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
@@ -46,17 +47,23 @@ export default function RootLayout({
                 </div>
               </header>
 
-              <main className="flex-1 container mx-auto px-4 py-10 md:py-16"> {/* Adjusted padding */}
+              <main className="flex-1 container mx-auto px-4 py-12 md:py-20"> {/* Adjusted padding */}
                 {children}
               </main>
 
-              {/* Simple Footer */}
-              <footer className="py-6 md:px-8 md:py-8 border-t border-border/40">
-                <div className="container flex flex-col items-center justify-center gap-2 sm:flex-row sm:justify-between">
+              {/* Enhanced Footer */}
+              <footer className="py-8 md:px-8 md:py-10 border-t border-border/40 bg-muted/30">
+                <div className="container flex flex-col items-center justify-center gap-3 sm:flex-row sm:justify-between">
                   <p className="text-sm text-muted-foreground text-center">
-                    © {new Date().getFullYear()} Pyetro (Nyx). All rights reserved.
+                    © {new Date().getFullYear()} Pyetro (Nyx). Todos os direitos reservados.
                   </p>
-                  {/* Optional: Add social links or other footer content here */}
+                  {/* You can add social icons or other links here if desired in the future */}
+                  {/* Example:
+                  <div className="flex items-center gap-4">
+                    <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors"><Github size={18} /></Link>
+                    <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors"><Linkedin size={18} /></Link>
+                  </div>
+                   */}
                 </div>
               </footer>
             </div>

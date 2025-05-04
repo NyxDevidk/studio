@@ -25,7 +25,7 @@ export function LanguageSwitcher() {
 
   if (!mounted) {
     // Render placeholder to prevent layout shift
-    return <div className="flex items-center space-x-1"><Button variant="ghost" size="sm" disabled className="w-9">EN</Button><Button variant="ghost" size="sm" disabled className="w-9">PT</Button></div>;
+    return <div className="flex items-center space-x-1"><Button variant="ghost" size="sm" disabled className="w-10 h-9">EN</Button><Button variant="ghost" size="sm" disabled className="w-10 h-9">PT</Button></div>;
   }
 
   const handleLanguageChange = (newLang: Language) => {
@@ -33,7 +33,7 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex items-center space-x-1 rounded-md bg-muted p-0.5">
+    <div className="flex items-center space-x-1 rounded-md bg-muted p-1"> {/* Slightly increased padding */}
       {(['en', 'pt'] as Language[]).map((lang) => (
         <Tooltip key={lang}>
           <TooltipTrigger asChild>
@@ -42,13 +42,13 @@ export function LanguageSwitcher() {
               size="sm"
               onClick={() => handleLanguageChange(lang)}
               aria-pressed={language === lang}
-              className={`w-9 h-8 transition-colors duration-200 ${language === lang ? 'shadow-sm' : ''}`} // Adjusted size and added transition
+              className={`w-10 h-9 transition-all duration-200 ease-in-out ${language === lang ? 'shadow-inner bg-background' : 'hover:bg-accent/80'}`} // Adjusted size, transition, and active/hover styles
             >
               {lang.toUpperCase()}
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Switch to {languageLabels[lang]}</p>
+            <p>Mudar para {languageLabels[lang]}</p> {/* Adjusted tooltip text */}
           </TooltipContent>
         </Tooltip>
       ))}

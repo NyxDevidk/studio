@@ -21,12 +21,12 @@ export function ThemeToggle() {
 
   if (!mounted) {
     // Render a placeholder button matching the final size to prevent layout shift
-    return <Button variant="ghost" size="icon" className="h-9 w-9" disabled />;
+    return <Button variant="ghost" size="icon" className="h-10 w-10" disabled />;
   }
 
   const isDarkMode = theme === 'dark';
   const Icon = isDarkMode ? Sun : Moon;
-  const tooltipText = `Switch to ${isDarkMode ? 'light' : 'dark'} mode`;
+  const tooltipText = `Mudar para tema ${isDarkMode ? 'claro' : 'escuro'}`; // Adjusted tooltip text
 
   return (
     <Tooltip>
@@ -36,12 +36,11 @@ export function ThemeToggle() {
           size="icon" // Standard icon button size
           onClick={toggleTheme}
           aria-label={tooltipText}
-          className="h-9 w-9 rounded-full" // Ensure it's round
+          className="h-10 w-10 rounded-full hover:bg-accent/80 transition-all duration-200 ease-in-out" // Ensure it's round, adjusted size and hover
         >
-          <Icon className="h-[1.2rem] w-[1.2rem] transition-transform duration-300 ease-in-out rotate-0 scale-100 hover:rotate-12 dark:-rotate-90 dark:scale-0" />
+          <Sun className="h-[1.3rem] w-[1.3rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" /> {/* Adjusted icon size */}
+          <Moon className="absolute h-[1.3rem] w-[1.3rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" /> {/* Adjusted icon size */}
           <span className="sr-only">{tooltipText}</span> {/* Keep for screen readers */}
-           {/* Second icon for smooth transition */}
-          <Icon className="absolute h-[1.2rem] w-[1.2rem] transition-transform duration-300 ease-in-out rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
         </Button>
       </TooltipTrigger>
       <TooltipContent>
