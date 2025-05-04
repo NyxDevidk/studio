@@ -23,10 +23,9 @@ export function PersonalInfoSection() {
   return (
     <section id="about" className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
       <Avatar className="w-24 h-24 md:w-32 md:h-32 border-4 border-primary shadow-lg">
-        {/* Developer Note: Using a placeholder image/GIF.
-            Replace with the actual user's GIF/image URL when provided. */}
+        {/* Developer Note: Using user-provided GIF link. */}
         <AvatarImage
-          src="https://picsum.photos/128/128" // Placeholder URL
+          src="https://i.imgur.com/TecgRw1.gif" // Updated GIF URL
           alt="Nyx (Pyetro) - User Avatar"
           data-ai-hint="user avatar profile picture" // Hint for finding a replacement
          />
