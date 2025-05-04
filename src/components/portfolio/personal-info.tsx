@@ -29,7 +29,7 @@ const content = {
   },
   pt: {
     name: "Pyetro (Nyx)",
-    bio: "Sou Dev a 3 anos e gosto de Programar apps para uso propio, Amo Roblox e Minecraft e tenho 14 Anos.",
+    bio: "Sou desenvolvedor há 3 anos e gosto de programar apps para uso próprio. Amo Roblox e Minecraft e tenho 14 anos.", // Updated description
     githubAriaLabel: "GitHub",
     discordAriaLabel: "Discord",
   }
