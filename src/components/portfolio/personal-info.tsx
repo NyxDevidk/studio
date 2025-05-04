@@ -1,3 +1,5 @@
+'use client'; // Added 'use client' as this component uses hooks (implicitly via Avatar) and event handlers (Links)
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react"; // Mail and Linkedin removed
@@ -21,9 +23,13 @@ export function PersonalInfoSection() {
   return (
     <section id="about" className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
       <Avatar className="w-24 h-24 md:w-32 md:h-32 border-4 border-primary shadow-lg">
-        {/* Developer Note: Using a placeholder as the provided GIF URL might be temporary.
-            Replace with a permanent URL when available. */}
-        <AvatarImage src="https://picsum.photos/128/128" alt="Nyx (Pyetro) - Anime character Itachi Uchiha" data-ai-hint="anime character itachi uchiha" />
+        {/* Developer Note: Using a placeholder image/GIF.
+            Replace with the actual user's GIF/image URL when provided. */}
+        <AvatarImage
+          src="https://picsum.photos/128/128" // Placeholder URL
+          alt="Nyx (Pyetro) - User Avatar"
+          data-ai-hint="user avatar profile picture" // Hint for finding a replacement
+         />
         <AvatarFallback>PN</AvatarFallback> {/* Updated Fallback */}
       </Avatar>
       <div className="text-center md:text-left">
