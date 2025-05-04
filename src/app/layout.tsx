@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'BlueHaze Portfolio',
+  title: 'Nyx Portfolio',
   description: 'A personal portfolio showcasing projects and skills.',
 };
 
